@@ -1,8 +1,44 @@
+var User = require('models/user').User;
+var Role = require('models/role').Role;
+var HttpError = require('error').HttpError;
+var ObjectID = require('mongodb').ObjectID;
 
-/*
- * GET home page.
- */
+module.exports = function(app){
+  app.get('/', function(req, res, next) {
+    res.render("index", {});
+  });
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+
+
+  app.get('/users', function(req, res, next) {
+    User.find({}, function(err, users){
+      if(err) return next(err);
+      res.json(users);
+    });
+  });
+
+  app.get('/user/:id', function(req, res, next) {
+    try{
+      var id = new ObjectID(req.params.id);
+    } catch (e) {
+      return next(404);
+    }
+
+    User.findById(id, function(err, user){
+      if(err) return next(err);
+      if(!user){
+        next(new HttpError(404, "User not found"));
+      }
+      res.json(user);
+    });
+  });
+
+
+
+  app.get('/roles', function(req, res, next){
+    Role.find({}, function(err, roles){
+      if(err) return next(err);
+      res.json(roles);
+    });
+  });
 };
