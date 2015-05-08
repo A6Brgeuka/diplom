@@ -1,5 +1,6 @@
 var mongoose = require('libs/mongoose');
 var async = require('async');
+var ObjectID = require('mongodb').ObjectID;
 //var User = require('models/user').User;
 //var Role =
 
@@ -50,6 +51,8 @@ function createUser(callback){
 
         var roleIdAdmin = roles[0]._id;
         var roleIdUser = roles[1]._id;
+
+
         console.log(roles);
 
         var users = [

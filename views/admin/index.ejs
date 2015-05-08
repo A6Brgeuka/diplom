@@ -1,0 +1,10 @@
+<% layout('layout/page')%>
+<% block('title', 'IndexTitle')%>
+<% block('header', 'IndexHeader')%>
+<% block('footer', 'IndexFooter')%>
+<h1 class="lead">Index</h1>
+<%if(user){%>
+<p>Wellcome to Console,  <%=user.get('username')%></p>
+<%}%>
+
+

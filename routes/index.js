@@ -1,4 +1,16 @@
-var User = require('models/user').User;
+var checkAccess = require('middleware/checkAccess');
+
+module.exports = function(app){
+  app.get('/', require('./frontpage').get);
+
+  app.get('/login', require('./login').get);
+  app.post('/login', require('./login').post);
+
+  app.post('/logout', require('./logout').post);
+  app.get('/admin', checkAccess, require('./admin').get);
+};
+
+/*var User = require('models/user').User;
 var Role = require('models/role').Role;
 var HttpError = require('error').HttpError;
 var ObjectID = require('mongodb').ObjectID;
@@ -41,4 +53,4 @@ module.exports = function(app){
       res.json(roles);
     });
   });
-};
+};*/

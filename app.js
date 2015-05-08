@@ -25,7 +25,23 @@ app.use(express.bodyParser()); //считывает формы из post, json, get
 
 app.use(express.cookieParser()); // req.cookies
 
+var MongoStore = require('connect-mongo')(express);
+var mongoose = require('libs/mongoose');
+
+app.use(express.session({
+  secret: config.get('session:secret'),
+  key: config.get('session:key'),
+  cookie: config.get('sesion:cookie'),
+  store: new MongoStore({mongoose_connection: mongoose.connection})
+}));
+
+/*app.use(function(req, res, next){
+  req.session.numberOfVisits = req.session.numberOfVisits + 1 || 1;
+  res.send("Visits: " + req.session.numberOfVisits);
+});*/
+
 app.use(require('middleware/sendHttpError'));
+app.use(require('middleware/loadUser'));
 
 app.use(app.router);
 
@@ -40,7 +56,7 @@ http.createServer(app).listen(config.get('port'), function(){   //express будет 
 });
 
 
-//middleware - обработчик запросов
+//middleware - обработ    чик запросов
 
 app.use(function(err, req, res, next){
   if (typeof err == 'number') { // next(404);
@@ -61,22 +77,6 @@ app.use(function(err, req, res, next){
 });
 
 
-
-/*var routes = require('./routes');
-var user = require('./routes/user');
-
-// all environments
-
-
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-
-
-app.get('/', routes.index);
-app.get('/users', user.list);*/
-
+//browser -> login password -> server
+//server -> sid ->
 

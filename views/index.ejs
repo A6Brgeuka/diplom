@@ -3,4 +3,9 @@
 <% block('header', 'IndexHeader')%>
 <% block('footer', 'IndexFooter')%>
 <h1 class="lead">Index</h1>
+<%if(user){%>
+<p>Wellcome,  <%=user.get('username')%></p>
+<%} else {%>
+<p>Wellcome, Guest</p>
+<%}%>
 
