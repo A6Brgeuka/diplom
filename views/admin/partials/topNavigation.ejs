@@ -1,15 +1,12 @@
 <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <% if (user) { %>
+        <li><a href="/">Site</a></li>
         <li><a href="/admin">Console</a></li>
-        <% } %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <% if (user) { %>
         <li><a href="" onclick="$('<form method=POST action=/logout>').submit();return false">Sign out</a></form></li>
         <% } else { %>
-        <li><a href="/registration">Registration</a></li>
         <li><a href="/login">Sing in</a></li>
         <% } %>
     </ul>

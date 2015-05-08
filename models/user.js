@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 var async = require('async');
 var util = require('util');
+var Role = require('models/role').Role;
 
 var mongoose = require('libs/mongoose'),
     Schema = mongoose.Schema;
@@ -61,6 +62,29 @@ schema.statics.authorize = function(username, password, callback) {
                 }
             } else {
                     callback(new AuthError("User does not exist"));
+            }
+        }
+    ], callback);
+};
+
+schema.statics.registration = function(username, password, callback) {
+    var User = this;
+
+    async.waterfall([
+        function(callback) {
+            User.findOne({username: username}, callback);
+        },
+        function(user, callback) {
+            if (!user) {
+                Role.findOne({role:"User"}, function(err, role){
+                    var newUser = new User({username: username, password: password, roleId:role._id});
+                    newUser.save(function(err) {
+                        if (err) return callback(err);
+                        callback(null, newUser);
+                    });
+                });
+            } else {
+                callback(new AuthError("User exist"));
             }
         }
     ], callback);

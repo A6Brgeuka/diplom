@@ -1,4 +1,5 @@
 var checkAccess = require('middleware/checkAccess');
+chechAuth = require('middleware/checkAuth');
 
 module.exports = function(app){
   app.get('/', require('./frontpage').get);
@@ -7,7 +8,11 @@ module.exports = function(app){
   app.post('/login', require('./login').post);
 
   app.post('/logout', require('./logout').post);
-  app.get('/admin', checkAccess, require('./admin').get);
+
+  app.get('/admin', chechAuth,checkAccess, require('./admin/').get);
+
+  app.get('/registration', require('./registration').get)
+  app.post('/registration', require('./registration').post)
 };
 
 /*var User = require('models/user').User;
