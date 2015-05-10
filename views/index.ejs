@@ -4,8 +4,22 @@
 <% block('footer', 'IndexFooter')%>
 <h1 class="lead">Index</h1>
 <%if(user){%>
-<p>Wellcome,  <%=user.get('username')%></p>
+    <p>Wellcome,  <%=user.get('username')%></p>
+    <p><a href="/create">Create advert</a></p>
 <%} else {%>
 <p>Wellcome, Guest</p>
-<%}%>
+<%} adverts.forEach(function(advert){ %>
+    <div class="col-md-4" style="margin-bottom:30px; background-color:aliceblue; border: 1px solid black; height:460px">
+        <p>Title:<%=advert.title%> </p>
+        <p>Name: <%=advert.name%></p>
+        <p>ShortDescription: <%=advert.shortDescription%></p>
+        <p>Created: <%=advert.created%></p>
+        <p>Author: <%=advert.userId%></p>
+    </div>
+<%});%>
+
+
+
+
+
 

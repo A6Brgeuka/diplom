@@ -68,6 +68,7 @@ schema.statics.authorize = function(username, password, callback) {
 };
 
 schema.statics.registration = function(username, password, callback) {
+    var User = this;
     async.waterfall([
         function(callback) {
             User.findOne({username: username}, callback);

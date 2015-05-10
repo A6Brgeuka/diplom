@@ -6,7 +6,6 @@ var schema = new Schema({
         type: String,
         required: true,
         unique: true,
-        default: "User"
     }
 });
 
