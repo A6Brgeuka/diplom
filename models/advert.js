@@ -1,5 +1,6 @@
 var mongoose = require('libs/mongoose'),
     Schema = mongoose.Schema;
+var User = require('models/user').User;
 
 var schema = new Schema({
     title: {
@@ -23,35 +24,30 @@ var schema = new Schema({
         default: Date.now
     },
     userId: {
-        type: Schema.Types.ObjectId
+        type: String
     }
 });
 
 schema.statics.create = function(req, callback) {
 
     var Advert = this;
-    /*var newAdvert = new Advert(
-        {
-            title: req.body.title,
-            name: req.body.name,
-            shortDescription: req.body.shortDescription,
-            longDescription: req.body.longDescription,
-            userId: req.session.user,
-            created: Date.now
-        }
-    );*/
-    var newAdvert = new Advert(
-        {
-            title: req.body.title,
-            name: req.body.name,
-            shortDescription: req.body.shortDescription,
-            longDescription: req.body.longDescription,
-            userId: req.session.user
-        }
-    );
-    newAdvert.save(function(err){
-        if (err) return callback(err);
-        callback(null);
+
+    User.findById(req.session.user, function(err, user){
+        if(err) return next(err);
+
+        var newAdvert = new Advert(
+            {
+                title: req.body.title,
+                name: req.body.name,
+                shortDescription: req.body.shortDescription,
+                longDescription: req.body.longDescription,
+                userId: user.username
+            }
+        );
+        newAdvert.save(function(err){
+            if (err) return callback(err);
+            callback(null);
+        });
     });
 };
 

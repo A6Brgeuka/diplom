@@ -24,9 +24,10 @@ var schema = new Schema({
         type: Date,
         default: Date.now
     },
-    roleId:{
-        type: Schema.Types.ObjectId
-    }
+    roleId:[{
+        type: Schema.Types.ObjectId,
+        ref : 'Role'
+    }]
 });
 
 schema.methods.encryptPassword = function(password) {
