@@ -46,7 +46,7 @@ app.use(require('middleware/loadUser'));
 app.use(app.router);
 
 require('routes')(app);
-require('routes/admin');
+//require('routes/admin');
 
 
 
@@ -57,7 +57,7 @@ http.createServer(app).listen(config.get('port'), function(){   //express будет 
 });
 
 
-//middleware - обработ    чик запросов
+//middleware - обработчик запросов
 
 app.use(function(err, req, res, next){
   if (typeof err == 'number') { // next(404);

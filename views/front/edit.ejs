@@ -31,9 +31,9 @@
             <textarea name="longDescription" class="form-control" id="input-longDescription" placeholder="longDescription"><%=advert.longDescription%></textarea>
         </div>
     </div>
-    <input type="hidden" value="<%advert._id%>">
-    <input type="hidden" value="<%advert.userId%>">
-    <input type="hidden" value="<%advert.created%>">
+    <input type="hidden" value="<%=advert._id%>" name="_id">
+    <input type="hidden" value="<%=advert.userId%>" name="userId">
+    <input type="hidden" value="<%=advert.created%>" name="created">
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
             <button type="submit" class="btn btn-primary" data-loading-text="Sending...">Update</button>

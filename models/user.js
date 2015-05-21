@@ -76,13 +76,18 @@ schema.statics.registration = function(username, password, callback) {
         },
         function(user, callback) {
             if (!user) {
-                Role.findOne({role:"User"}, function(err, role){
-                    var newUser = new User({username: username, password: password, roleId:role._id});
-                    newUser.save(function(err) {
-                        if (err) return callback(err);
-                        callback(null, newUser);
+                if(password){
+                    Role.findOne({role:"User"}, function(err, role){
+                        var newUser = new User({username: username, password: password, roleId:role._id});
+                        newUser.save(function(err) {
+                            if (err) return callback(err);
+                            callback(null, newUser);
+                        });
                     });
-                });
+                } else {
+                    callback(new AuthError("Password is not valid"));
+                }
+
             } else {
                 callback(new AuthError("User exist"));
             }

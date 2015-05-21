@@ -99,12 +99,16 @@ schema.statics.advertUpdate = function(req, callback) {
     var Advert = this;
 
     Advert.update(
-        {name: req.body._id},
         {
-            //title: req.body.title,
-            name: "Name2"
-            /*shortDescription: req.body.shortDescription,
-            longDescription: req.body.longDescription*/
+            _id: req.body._id
+        },
+        {
+            title: req.body.title,
+            name: req.body.name,
+            shortDescription: req.body.shortDescription,
+            longDescription: req.body.longDescription
+        },{
+            multi: true
         } , function(err){
                 if(err) callback(err);
                 callback(null);
