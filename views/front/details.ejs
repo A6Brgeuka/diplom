@@ -1,0 +1,30 @@
+<% layout('layout/page')%>
+<% block('title', 'IndexTitle')%>
+<% block('header', 'IndexHeader')%>
+<% block('footer', 'IndexFooter')%>
+<h1 class="lead">Details</h1>
+
+<p>Page to details advert</p>
+
+<div class="col-md-4" style="margin-bottom:30px; background-color:aliceblue; border: 1px solid black; height:460px">
+    <p>Title:<%=advert.title%> </p>
+    <p>Name:<%=advert.name%></p>
+    <p>ShortDescription: <%=advert.shortDescription%></p>
+    <p>LongDescription: <%=advert.longDescription%></p>
+    <p>Created: <%=advert.created%></p>
+    <p>Author: <%=advert.userId%></p>
+</div>
+
+<div>
+    <% if(user.get('username')== advert.userId){%>
+        <p><a href="/edit/<%=advert._id%>">Edit</a></p>
+        <p><a href="/delete/<%=advert._id%>">Delete</a></p>
+    <%}%>
+</div>
+
+
+
+
+
+
+

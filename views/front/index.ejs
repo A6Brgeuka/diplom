@@ -1,0 +1,25 @@
+<% layout('layout/page')%>
+<% block('title', 'IndexTitle')%>
+<% block('header', 'IndexHeader')%>
+<% block('footer', 'IndexFooter')%>
+<h1 class="lead">Index</h1>
+<%if(user){%>
+    <p>Wellcome,  <%=user.get('username')%></p>
+    <p><a href="/create">Create advert</a></p>
+<%} else {%>
+<p>Wellcome, Guest</p>
+<%} adverts.forEach(function(advert){ %>
+    <div class="col-md-4" style="margin-bottom:30px; background-color:#ffffff; border: 1px solid black; height:250px">
+        <p>Title: <%=advert.title%> </p>
+        <p>Name: <a href="/details/<%=advert._id%>"><%=advert.name%></a></p>
+        <p>ShortDescription: <%=advert.shortDescription%></p>
+        <p>Created: <%=advert.created%></p>
+        <p>Author: <%=advert.userId%></p>
+    </div>
+<%});%>
+
+
+
+
+
+

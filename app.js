@@ -46,6 +46,7 @@ app.use(require('middleware/loadUser'));
 app.use(app.router);
 
 require('routes')(app);
+require('routes/admin');
 
 
 

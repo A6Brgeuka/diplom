@@ -2,20 +2,27 @@ var checkAccess = require('middleware/checkAccess');
 var chechAuth = require('middleware/checkAuth');
 
 module.exports = function(app){
-  app.get('/', require('./frontpage').get);
+  app.get('/', require('./front/frontpage').get);
 
-  app.get('/login', require('./login').get);
-  app.post('/login', require('./login').post);
+  app.get('/login', require('./front/login').get);
+  app.post('/login', require('./front/login').post);
 
-  app.post('/logout', require('./logout').post);
+  app.post('/logout', require('./front/logout').post);
+
+  app.get('/registration', require('./front/registration').get);
+  app.post('/registration', require('./front/registration').post);
+
+  app.get('/create', chechAuth,require('./front/create').get);
+  app.post('/create', chechAuth, require('./front/create').post);
+
+  app.get('/details/:id', chechAuth,require('./front/details').get);
+
+  app.get('/edit/:id', chechAuth,require('./front/edit').get);
+  app.post('/edit', chechAuth,require('./front/edit').post);
 
   app.get('/admin', chechAuth, checkAccess, require('./admin/').get);
 
-  app.get('/registration', require('./registration').get);
-  app.post('/registration', require('./registration').post);
-
-  app.get('/create', chechAuth,require('./create').get);
-  app.post('/create', chechAuth, require('./create').post);
+  app.get('/admin/users', chechAuth, checkAccess, require('./admin/users').get);
 };
 
 /*var User = require('models/user').User;

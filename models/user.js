@@ -90,6 +90,15 @@ schema.statics.registration = function(username, password, callback) {
     ], callback);
 };
 
+schema.statics.getUsers = function(callback) {
+    var User = this;
+
+    User.find({}, function(err, users){
+        if(err) return callback(err);
+        callback(null, users);
+    });
+};
+
 exports.User = mongoose.model('User', schema);
 
 function AuthError(message) {
