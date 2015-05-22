@@ -12,7 +12,7 @@ exports.get = function(req, res, next){
 
     Advert.getAdvertById(id, function(err, advert){
         if(err) return next(err);
-        res.render("front/details", {
+        res.render("front/advert/details", {
             advert: advert
         });
     });

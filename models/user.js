@@ -12,6 +12,16 @@ var schema = new Schema({
         unique: true,
         required: true
     },
+    firstname :{
+        type: String
+    },
+    lastname:{
+        type: String
+    },
+    phone:{
+        type: Number
+    }
+    ,
     hashedPassword: {
         type: String,
         required: true
@@ -78,7 +88,7 @@ schema.statics.registration = function(username, password, callback) {
             if (!user) {
                 if(password){
                     Role.findOne({role:"User"}, function(err, role){
-                        var newUser = new User({username: username, password: password, roleId:role._id});
+                        var newUser = new User({username: username, password: password, roleId:role._id, firstname: "", lastname:"", phone: null});
                         newUser.save(function(err) {
                             if (err) return callback(err);
                             callback(null, newUser);
@@ -101,6 +111,15 @@ schema.statics.getUsers = function(callback) {
     User.find({}, function(err, users){
         if(err) return callback(err);
         callback(null, users);
+    });
+};
+
+schema.statics.getCurrentUsers = function(req, callback) {
+    var User = this;
+
+    User.find({_id : req.session.user}, function(err, user){
+        if(err) return callback(err);
+        callback(null, user);
     });
 };
 

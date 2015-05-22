@@ -4,21 +4,25 @@ var chechAuth = require('middleware/checkAuth');
 module.exports = function(app){
   app.get('/', require('./front/frontpage').get);
 
-  app.get('/login', require('./front/login').get);
-  app.post('/login', require('./front/login').post);
+  app.get('/login', require('./front/auth/login').get);
+  app.post('/login', require('./front/auth/login').post);
 
-  app.post('/logout', require('./front/logout').post);
+  app.post('/logout', require('./front/auth/logout').post);
 
-  app.get('/registration', require('./front/registration').get);
-  app.post('/registration', require('./front/registration').post);
+  app.get('/registration', require('./front/auth/registration').get);
+  app.post('/registration', require('./front/auth/registration').post);
 
-  app.get('/create', chechAuth,require('./front/create').get);
-  app.post('/create', chechAuth, require('./front/create').post);
+  app.get('/create', chechAuth, require('./front/advert/create').get);
+  app.post('/create', chechAuth, require('./front/advert/create').post);
 
-  app.get('/details/:id', chechAuth,require('./front/details').get);
+  app.get('/details/:id', require('./front/advert/details').get);
 
-  app.get('/edit/:id', chechAuth,require('./front/edit').get);
-  app.post('/edit', chechAuth,require('./front/edit').post);
+  app.get('/delete/:id', require('./front/advert/delete').get);
+
+  app.get('/edit/:id', chechAuth, require('./front/advert/edit').get);
+  app.post('/edit', chechAuth, require('./front/advert/edit').post);
+
+  app.get('/profile', chechAuth, require('./front/profile').get);
 
   app.get('/admin', chechAuth, checkAccess, require('./admin/').get);
 

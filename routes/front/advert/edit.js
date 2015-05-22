@@ -13,7 +13,7 @@ exports.get = function(req, res) {
 
     Advert.getAdvertById(id, function(err, advert){
         if(err) new HttpError(err.message);
-        res.render("front/edit", {
+        res.render("front/advert/edit", {
             advert: advert
         });
     });

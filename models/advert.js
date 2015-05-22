@@ -116,5 +116,26 @@ schema.statics.advertUpdate = function(req, callback) {
     );
 };
 
+schema.statics.advertDelete = function(req, callback) {
+    var Advert = this;
+
+    Advert.update(
+        {
+            _id: req.body._id
+        },
+        {
+            title: req.body.title,
+            name: req.body.name,
+            shortDescription: req.body.shortDescription,
+            longDescription: req.body.longDescription
+        },{
+            multi: true
+        } , function(err){
+            if(err) callback(err);
+            callback(null);
+        }
+    );
+};
+
 
 exports.Advert = mongoose.model('Advert', schema);

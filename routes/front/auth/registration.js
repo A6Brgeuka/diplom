@@ -4,7 +4,7 @@ var AuthError = require('models/user').AuthError;
 
 
 exports.get = function(req, res) {
-    res.render('front/registration');
+    res.render('front/auth/registration');
 };
 
 exports.post = function(req, res, next) {

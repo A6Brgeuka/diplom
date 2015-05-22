@@ -4,7 +4,7 @@ var AuthError = require('models/user').AuthError;
 
 
 exports.get = function(req, res) {
-    res.render('front/create');
+    res.render('front/advert/create');
 };
 
 exports.post = function(req, res, next) {

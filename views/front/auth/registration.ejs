@@ -1,7 +1,6 @@
-<% layout('layout/page') %>
-<% block('title', "Login") %>
-
-<p>Page to login</p>
+<% layout('../layout/page') -%>
+<% block('title', "Registration") -%>
+<p>Page to registration</p>
 <p>Enter your user name and password.</p>
 
 <form class="form-horizontal login-form" name="login-form">
@@ -21,14 +20,11 @@
     </div>
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button type="submit" class="btn btn-primary" data-loading-text="Sending...">Sing in</button>
+            <button type="submit" class="btn btn-primary" data-loading-text="Sending...">Send</button>
             <span class="help-block error"></span>
         </div>
     </div>
 </form>
-
-<p class="lead">if you don't have an account, you can create <a href="/registration">Registration</a></p>
-
 
 <script>
     $(document.forms['login-form']).on('submit', function() {
@@ -38,7 +34,7 @@
         $(":submit", form).button("loading");
 
         $.ajax({
-            url: "/login",
+            url: "/registration",
             method: "POST",
             data: form.serialize(),
             complete: function() {
