@@ -2,10 +2,14 @@
 <% block('title', 'Profile')%>
 <% block('header', 'Profile')%>
 <% block('footer', 'Profile')%>
+
 <h1 class="lead">Profile</h1>
 
-<div>
-    <p>login(mail):<%=user.get('username')%> </p>
+<div class="col-md-4" style="margin-bottom:30px; background-color:aliceblue; border: 1px solid black; height:460px">
+
+    <p><%=curUser%></p>
+    <%=curUser.username%>
+    <%=curUser.hashedPassword%>
     <p>ObjectId:<%=curUser._id%></p>
     <p>First:<%=curUser.firstname%></p>
     <p>Last: <%=curUser.lastname%></p>

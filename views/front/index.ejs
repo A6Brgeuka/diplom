@@ -4,7 +4,7 @@
 <% block('footer', 'IndexFooter')%>
 <h1 class="lead">Index</h1>
 <%if(user){%>
-    <p>Wellcome,  <%=user.get('username')%></p>
+    <p>Wellcome,  <a href="/profile"><%=user.get('username')%></a></p>
     <p><a href="/create">Create advert</a></p>
 <%} else {%>
 <p>Wellcome, Guest</p>

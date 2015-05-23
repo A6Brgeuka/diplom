@@ -116,21 +116,14 @@ schema.statics.advertUpdate = function(req, callback) {
     );
 };
 
-schema.statics.advertDelete = function(req, callback) {
+schema.statics.advertDelete = function(id, callback) {
     var Advert = this;
 
-    Advert.update(
+    Advert.remove(
         {
-            _id: req.body._id
-        },
-        {
-            title: req.body.title,
-            name: req.body.name,
-            shortDescription: req.body.shortDescription,
-            longDescription: req.body.longDescription
-        },{
-            multi: true
-        } , function(err){
+            _id: id
+        }
+        , function(err){
             if(err) callback(err);
             callback(null);
         }

@@ -27,6 +27,8 @@ module.exports = function(app){
   app.get('/admin', chechAuth, checkAccess, require('./admin/').get);
 
   app.get('/admin/users', chechAuth, checkAccess, require('./admin/users').get);
+
+  app.get('/admin/adverts', chechAuth, checkAccess, require('./admin/adverts').get);
 };
 
 /*var User = require('models/user').User;

@@ -2,11 +2,11 @@ var User = require('models/user').User;
 
 exports.get = function(req, res, next){
 
-    User.getCurrentUsers(req, function(err, user){
+    User.getCurrentUser(req, function(err, curUser){
        if(err) next(err);
-        console.log(user);
+        console.log(curUser);
         res.render('front/profile', {
-            curUser: user
+            curUser: curUser
         });
     });
 };

@@ -4,9 +4,9 @@
 <% block('footer', 'UsersFooter')%>
 <h1 class="lead">Users</h1>
 <table>
-    <tr><th>username </th></tr>
+    <tr><th>username </th><th style="padding-right: 15px">fistname </th><th>lastname </th><th>number </th></tr>
     <%users.forEach(function(user){%>
-    <tr><td><%=user.username%></td></tr>
+    <tr><td><%=user.username%></td> <td><%=user.firstname%></td> <td><%=user.lastname%></td><td> <%=user.phone%></td></tr>
 
     <%})%>
 </table>

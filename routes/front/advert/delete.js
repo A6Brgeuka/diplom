@@ -12,8 +12,6 @@ exports.get = function(req, res, next){
 
     Advert.advertDelete(id, function(err, advert){
         if(err) return next(err);
-        res.render("front/details", {
-            advert: advert
-        });
+        res.redirect('/');
     });
 };

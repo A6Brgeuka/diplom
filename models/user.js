@@ -114,11 +114,12 @@ schema.statics.getUsers = function(callback) {
     });
 };
 
-schema.statics.getCurrentUsers = function(req, callback) {
+schema.statics.getCurrentUser = function(req, callback) {
     var User = this;
 
     User.find({_id : req.session.user}, function(err, user){
         if(err) return callback(err);
+
         callback(null, user);
     });
 };
