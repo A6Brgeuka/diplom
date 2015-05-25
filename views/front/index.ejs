@@ -1,25 +1,72 @@
-<% layout('layout/page')%>
-<% block('title', 'IndexTitle')%>
-<% block('header', 'IndexHeader')%>
-<% block('footer', 'IndexFooter')%>
-<h1 class="lead">Index</h1>
-<%if(user){%>
-    <p>Wellcome,  <a href="/profile"><%=user.get('username')%></a></p>
-    <p><a href="/create">Create advert</a></p>
-<%} else {%>
-<p>Wellcome, Guest</p>
-<%} adverts.forEach(function(advert){ %>
-    <div class="col-md-4" style="margin-bottom:30px; background-color:#ffffff; border: 1px solid black; height:250px">
-        <p>Title: <%=advert.title%> </p>
-        <p>Name: <a href="/details/<%=advert._id%>"><%=advert.name%></a></p>
-        <p>ShortDescription: <%=advert.shortDescription%></p>
-        <p>Created: <%=advert.created%></p>
-        <p>Author: <%=advert.userId%></p>
-    </div>
-<%});%>
+<!DOCTYPE html>
+<html  ng-app="angularApp">
+<head>
+    <title>ASD</title>
+    <meta charset="utf-8">
+    <link rel='stylesheet'  href="vendor/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <script src="vendor/bower_components/angular/angular.js"></script>
+    <script src="vendor/bower_components/angular/angular-route.js"></script>
+    <script src="vendor/bower_components/angular/angular-resource.js"></script>
+
+    <script src="js/front/app.js"></script>
 
 
+    <script src="js/front/routes.js"></script>
+
+    <script src="js/front/controllers/frontController.js"></script>
+    <script src="js/front/controllers/galleryController.js"></script>
+    <script src="js/front/controllers/postController.js"></script>
+    <script src="js/front/controllers/signController.js"></script>
+    <script src="js/front/controllers/contactController.js"></script>
+
+    <script src="js/front/services/signServices.js"></script>
 
 
+    <!--<script src="js/front/controllers/controllers.js"></script>-->
+    <!--<script src="js/front/services/services.js"></script>-->
 
 
+</head>
+<body ng-controller="FrontController as vm">
+
+<div class="container">
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="#/">Home</a></li>
+                    <li><a href="#/post">Post</a></li>
+                    <li><a href="#/gallery">Gallery</a></li>
+                    <li><a href="#/contact">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (user) { %>
+                    <li><a href="" ng-click="vm.logout()">Sign out</a></li>
+                    <% } else { %>
+                    <li><a href="#/signup">Sign up</a></li>
+                    <li><a href="#/signin">Sign in</a></li>
+                    <% } %>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+
+    <div ng-view></div>
+
+</div> <!-- /container -->
+
+    <!--<script src="vendor/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
+</body>
+</html>

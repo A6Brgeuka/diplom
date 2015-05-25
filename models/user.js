@@ -2,12 +2,13 @@ var crypto = require('crypto');
 var async = require('async');
 var util = require('util');
 var Role = require('models/role').Role;
+var log = require('libs/log')(module);
 
 var mongoose = require('libs/mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-    username: {
+    login: {
         type: String,
         unique: true,
         required: true
@@ -57,12 +58,12 @@ schema.methods.checkPassword = function(password) {
     return this.encryptPassword(password) === this.hashedPassword;
 };
 
-schema.statics.authorize = function(username, password, callback) {
+schema.statics.authorize = function(login, password, callback) {
     var User = this;
 
     async.waterfall([
         function(callback) {
-            User.findOne({username: username}, callback);
+            User.findOne({login: login}, callback);
         },
         function(user, callback) {
             if (user) {
@@ -78,17 +79,18 @@ schema.statics.authorize = function(username, password, callback) {
     ], callback);
 };
 
-schema.statics.registration = function(username, password, callback) {
+schema.statics.registration = function(login, password, callback) {
     var User = this;
+
     async.waterfall([
         function(callback) {
-            User.findOne({username: username}, callback);
+            User.findOne({login: login}, callback);
         },
         function(user, callback) {
             if (!user) {
                 if(password){
                     Role.findOne({role:"User"}, function(err, role){
-                        var newUser = new User({username: username, password: password, roleId:role._id, firstname: "", lastname:"", phone: null});
+                        var newUser = new User({login: login, password: password, roleId:role._id, firstname: "", lastname:"", phone: null});
                         newUser.save(function(err) {
                             if (err) return callback(err);
                             callback(null, newUser);
@@ -97,15 +99,15 @@ schema.statics.registration = function(username, password, callback) {
                 } else {
                     callback(new AuthError("Password is not valid"));
                 }
-
             } else {
+                log.info("HOPM");
                 callback(new AuthError("User exist"));
             }
         }
     ], callback);
 };
 
-schema.statics.getUsers = function(callback) {
+/*schema.statics.getUsers = function(callback) {
     var User = this;
 
     User.find({}, function(err, users){
@@ -122,7 +124,7 @@ schema.statics.getCurrentUser = function(req, callback) {
 
         callback(null, user);
     });
-};
+};*/
 
 exports.User = mongoose.model('User', schema);
 

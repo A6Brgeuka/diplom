@@ -56,9 +56,9 @@ function createUser(callback){
         console.log(roles);
 
         var users = [
-            {username: "admin",password: "admin", roleId: roleIdAdmin},
-            {username: "user1",password: "user1", roleId: roleIdUser},
-            {username: "user2",password: "user2", roleId: roleIdUser}
+            {login: "admin",password: "admin", roleId: roleIdAdmin},
+            {login: "user1",password: "user1", roleId: roleIdUser},
+            {login: "user2",password: "user2", roleId: roleIdUser}
         ];
         async.each(users, function(userData, callback){
             var user = new mongoose.models.User(userData);
