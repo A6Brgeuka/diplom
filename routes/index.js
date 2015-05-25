@@ -16,7 +16,7 @@ module.exports = function(app){
 
   app.get('/showpost', require('./front/post/show').get);
 
-  app.post('/createpost', require('./front/post/create').post);
+  app.post('/createpost', chechAuth, require('./front/post/create').post);
 
 
   //admin route
