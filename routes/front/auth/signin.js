@@ -13,8 +13,6 @@ exports.post = function(req, res, next) {
     var login = req.body.login;
     var password = req.body.password;
 
-    console.log("enter tyt");
-
     User.authorize(login, password, function(err, user) {
         if (err) {
             if (err instanceof AuthError) {

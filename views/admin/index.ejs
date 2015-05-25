@@ -1,11 +1,50 @@
-<% layout('layout/page')%>
-<% block('title', 'IndexTitle')%>
-<% block('header', 'IndexHeader')%>
-<% block('footer', 'IndexFooter')%>
-<h1 class="lead">Index</h1>
-<%if(user){%>
-<p>Wellcome to Console,  <%=user.get('username')%></p>
-<%}%>
-<a href="/admin/users">Users</a>
-<a href="/admin/adverts">Adverts</a>
+<!DOCTYPE html>
+<html  ng-app="AdminApp">
+<head>
+    <title>ASD</title>
+    <meta charset="utf-8">
+    <link rel='stylesheet'  href="vendor/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="admin/css/style.css">
 
+    <script src="vendor/bower_components/angular/angular.js"></script>
+    <script src="vendor/bower_components/angular/angular-route.js"></script>
+    <script src="vendor/bower_components/angular/angular-resource.js"></script>
+
+    <script src="admin/js/app.js"></script>
+
+
+    <script src="admin/js/routes.js"></script>
+    <script src="admin/js/controllers/adminController.js"></script>
+    <script src="admin/js/controllers/postController.js"></script>
+
+    <script src="admin/js/services/signController.js"></script>
+
+    <!--
+    <script src="admin/js/controllers/galleryController.js"></script>
+    <script src="admin/js/controllers/postController.js"></script>
+    <script src="admin/js/controllers/signController.js"></script>
+    <script src="admin/js/controllers/contactController.js"></script>
+
+    <script src="admin/js/services/signServices.js"></script>
+    <script src="admin/js/services/postServices.js"></script>-->
+
+
+    <!--<script src="js/front/controllers/controllers.js"></script>-->
+    <!--<script src="js/front/services/services.js"></script>-->
+
+
+</head>
+<body ng-controller="AdminController as vm">
+
+<div class="container">
+
+    <!-- Static navbar -->
+    <%-partial('./partials/topNavigation')%>
+
+    <div ng-view></div>
+
+</div> <!-- /container -->
+
+<!--<script src="vendor/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
+</body>
+</html>

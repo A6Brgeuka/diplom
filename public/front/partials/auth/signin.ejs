@@ -1,0 +1,16 @@
+<h3>Sign in</h3>
+<div class="col-sm-8 col-md-6">
+    <form name="signIn">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" class="form-control" ng-model="vm.login" id="login" placeholder="login@login.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" ng-model="vm.password" id="password" placeholder="******" required>
+        </div>
+
+        <button ng-click="vm.loginUser()" class="btn btn-default" ng-disabled="signIn.$invalid">Sign in</button>
+    </form>
+</div>

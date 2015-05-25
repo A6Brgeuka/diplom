@@ -1,7 +1,6 @@
 var crypto = require('crypto');
 var async = require('async');
 var util = require('util');
-var Role = require('models/role').Role;
 var log = require('libs/log')(module);
 
 var mongoose = require('libs/mongoose'),
@@ -21,8 +20,7 @@ var schema = new Schema({
     },
     phone:{
         type: Number
-    }
-    ,
+    },
     hashedPassword: {
         type: String,
         required: true
@@ -35,10 +33,9 @@ var schema = new Schema({
         type: Date,
         default: Date.now
     },
-    roleId:[{
-        type: Schema.Types.ObjectId,
-        ref : 'Role'
-    }]
+    isAdmin:{
+        type: Boolean
+    }
 });
 
 schema.methods.encryptPassword = function(password) {
@@ -89,18 +86,15 @@ schema.statics.registration = function(login, password, callback) {
         function(user, callback) {
             if (!user) {
                 if(password){
-                    Role.findOne({role:"User"}, function(err, role){
-                        var newUser = new User({login: login, password: password, roleId:role._id, firstname: "", lastname:"", phone: null});
-                        newUser.save(function(err) {
-                            if (err) return callback(err);
-                            callback(null, newUser);
-                        });
+                    var newUser = new User({login: login, password: password, isAdmin: false, firstname: "", lastname:"", phone: null});
+                    newUser.save(function(err) {
+                        if (err) return callback(err);
+                        callback(null, newUser);
                     });
                 } else {
                     callback(new AuthError("Password is not valid"));
                 }
             } else {
-                log.info("HOPM");
                 callback(new AuthError("User exist"));
             }
         }
@@ -125,6 +119,7 @@ schema.statics.getCurrentUser = function(req, callback) {
         callback(null, user);
     });
 };*/
+
 
 exports.User = mongoose.model('User', schema);
 

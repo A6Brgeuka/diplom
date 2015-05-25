@@ -1,0 +1,12 @@
+<div class="lead">Post page</div>
+
+<a class="btn btn-primary" href="#/createpost">Create post</a>
+
+<button class="btn btn-primary" ng-click="vm.showPosts()">Get Posts</button><br>
+
+<div ng-repeat="post in vm.posts" class="col-md-4" style="margin-bottom:30px; background-color:#ffffff; border: 1px solid black; heieght:800px;">
+    <div>Title: {{post.title}}</div>
+    <div>Content brief: {{post.brief}}</div>
+    <div>Content extended: {{post.extended}}</div>
+    <div>Author: {{post.Author.login}}</div>
+</div>

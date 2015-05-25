@@ -14,6 +14,18 @@ module.exports = function(app){
   app.post('/signup', require('./front/auth/signup').post);
 
 
+  app.get('/showpost', require('./front/post/show').get);
+
+  app.post('/createpost', require('./front/post/create').post);
+
+
+  //admin route
+
+  app.get('/adm', chechAuth, checkAccess, require('./admin/adminpage').get);
+
+
+
+
 
   /*app.get('/create', chechAuth, require('./front/advert/create').get);
   app.post('/create', chechAuth, require('./front/advert/create').post);
