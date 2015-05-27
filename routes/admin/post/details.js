@@ -10,12 +10,12 @@ exports.get = function(req, res, next){
         return next(e);
     }
 
-    Post.getPostByIdFront(id, function(err, advert){
+    Post.getPostById(id, function(err, advert){
         if(err) return next(err);
 
-        res.json(advert);
+        res.json([advert]);
         /*res.render("front/advert/details", {
-            advert: advert
-        });*/
+         advert: advert
+         });*/
     });
 };

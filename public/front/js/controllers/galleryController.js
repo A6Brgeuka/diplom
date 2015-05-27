@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .controller('GalleryController', GalleryController);
 
     GalleryController.$inject = [];

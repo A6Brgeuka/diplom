@@ -1,0 +1,40 @@
+<div class="lead">Create user</div>
+
+<form name="createUser">
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" class="form-control" ng-model="vm.login" id="login" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fName">Firstname</label>
+        <input type="text" class="form-control" ng-model="vm.fName" id="fName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="lName">Lastname</label>
+        <input type="text" class="form-control" ng-model="vm.lName" id="lName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" ng-model="vm.password" id="password" required>
+    </div>
+
+    <div class="form-group">
+        <label for="confpassword">Confirm password</label>
+        <input type="password" class="form-control" ng-model="vm.confpassword" id="confpassword" required>
+    </div>
+
+    <div class="form-group">
+        <label for="isAdmin">is Admin</label>
+        <input type="checkbox" class="form-control" ng-model="vm.isAdmin" id="isAdmin">
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" ng-model="vm.phone" id="phone">
+    </div>
+
+    <button ng-click="vm.saveUser()" class="btn btn-default" ng-disabled="createUser.$invalid">Create</button>
+</form>

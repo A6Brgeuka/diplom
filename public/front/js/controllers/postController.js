@@ -1,20 +1,22 @@
 (function() {
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .controller('PostController', PostController)
-        .controller('CreatePostController', CreatePostController);
+        .controller('DetailsPostController', DetailsPostController);
 
     PostController.$inject = ['GetPosts'];
-    CreatePostController.$inject = ['CreatePost'];
+    DetailsPostController.$inject = ['$routeParams', 'DetailsPost'];
 
 
     function PostController(GetPosts){
         var vm = this;
 
         vm.posts = [];
-        vm.showPosts = showPosts;
+        //vm.showPosts = showPosts;
 
-        function showPosts(){
+        Init();
+
+        function Init(){
             GetPosts.query({}, function(answer){
                 if(!answer[0]){
                     alert(answer[1]);
@@ -25,24 +27,23 @@
         }
     }
 
-    function CreatePostController(CreatePost){
+    function DetailsPostController($routeParams, DetailsPost){
         var vm = this;
 
         vm.title = '';
         vm.brief = '';
         vm.extended = '';
-        vm.create = create;
+        vm.Author = '';
 
-        function create(){
-            CreatePost.query({title: vm.title, brief: vm.brief, extended: vm.extended}, function(answer){
-                if(!answer[0]){
-                    alert(answer[1]);
-                } else {
-                    alert("Post created");
-                    //$location.href('/');
+        DetailsPost.query({id: $routeParams.id}, function(answer){
 
-                }
-            });
-        }
+            vm.title = answer[0].title;
+            //console.log(answer[0].title);
+            vm.brief = answer[0].brief;
+            vm.extended = answer[0].extended;
+            vm.Author = answer[0].Author;
+
+        });
     }
+
 })();

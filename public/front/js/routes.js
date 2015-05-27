@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .config(['$routeProvider',
             function($routeProvider) {
                 $routeProvider.
@@ -26,9 +26,9 @@
                         controller: 'PostController',
                         controllerAs: 'vm'
                     }).
-                    when('/createpost', {
-                        templateUrl:  'front/partials/post/createPost.ejs',
-                        controller: 'CreatePostController',
+                    when('/post/:id', {
+                        templateUrl:  'front/partials/post/detailsPost.ejs',
+                        controller: 'DetailsPostController',
                         controllerAs: 'vm'
                     }).
                     when('/gallery', {
@@ -41,11 +41,6 @@
                         controller: 'ContactController',
                         controllerAs: 'vm'
                     }).
-                    /*when('/users/:userId', {
-                        templateUrl:  '../partials/detailsUser.ejs',
-                        controller: 'DetailsUserCtrl',
-                        controllerAs: 'vm'
-                    }).*/
                     otherwise({
                         redirectTo: '/'
                     });

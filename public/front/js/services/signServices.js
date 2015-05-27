@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .factory('SignInUser', SignInUser)
         .factory('SignUpUser', SignUpUser)
         .factory('SignOutUser', SignOutUser);

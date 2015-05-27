@@ -1,0 +1,34 @@
+<div>
+    <p><a href="#/users">Users</a></p>
+</div>
+
+
+<a class="btn btn-default btn-create btn-create-item" href="#/createuser">Create user</a>
+
+
+<table>
+    <tr>
+        <th>
+            <p>Login</p>
+        </th>
+        <th style="margin-right: 30px; padding-right: 30px;">
+            <p>Firstname</p>
+        </th>
+        <th>
+            <p>isAdmin</p>
+        </th>
+    </tr>
+    <tr ng-repeat="user in vm.users">
+        <td>
+            <a href="#/user/{{user._id}}">{{user.login}}</a>
+        </td>
+        <td>
+            <p>{{user.firstname}}</p>
+        </td>
+        <td>
+            <!--<input type="checkbox" ng-model="{{user.isAdmin}}">-->
+            <input type="checkbox" ng-model="user.isAdmin" disabled>
+            <!--<p>{{user.isAdmin}}</p>-->
+        </td>
+    </tr>
+</table>

@@ -1,17 +1,18 @@
 (function(){
     angular
-        .module('angularApp')
-        .factory('CreatePost', CreatePost)
-        .factory('GetPosts', GetPosts);
+        .module('FrontApp')
+        //.factory('CreatePost', CreatePost)
+        .factory('GetPosts', GetPosts)
+        .factory('DetailsPost', DetailsPost);
 
-    CreatePost.$inject = ['$resource'];
+    //CreatePost.$inject = ['$resource'];
     GetPosts.$inject = ['$resource'];
+    DetailsPost.$inject = ['$resource'];
 
-
-    function CreatePost($resource, $title, $brief, $extended){
-        return $resource('createpost', {}, {
+    function DetailsPost($resource, $id){
+        return $resource('/details', {}, {
             //console.log("asasdasd");
-            query: {method:'POST', params:{title: $title, brief: $brief, extended: $extended}, isArray:true}
+            query: {method:'GET', params:{id: $id}, isArray:true}
         });
     }
 

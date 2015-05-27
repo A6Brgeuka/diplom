@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .controller('SignInController', SignInController)
         .controller('SignUpController', SignUpController);
         //.controller('SignOutController', SignOutController);
@@ -22,7 +22,7 @@
                 if(!answer[0]){
                     alert(answer[1]);
                 } else {
-                    alert("Wellcome");
+                    /*alert("Wellcome");*/
                     //location.reload();
                     document.location.href = '/';
                 }
@@ -49,8 +49,8 @@
                 if(!answer[0]){
                     alert(answer[1]);
                 } else {
-                    alert("Wellcome");
-                    location.reload();
+                    /*alert("Wellcome");*/
+                    /*location.reload();*/
 
                     $location.href('/');
 

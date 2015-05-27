@@ -1,7 +1,7 @@
 (function(){
     'use strict';
 
-    angular.module('angularApp', [
+    angular.module('FrontApp', [
         'ngRoute',
         'ngResource'
     ]);

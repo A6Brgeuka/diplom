@@ -1,0 +1,32 @@
+<div>
+    <p><a href="#/posts">Posts</a></p>
+</div>
+
+
+<a class="btn btn-default btn-create btn-create-item" href="#/createpost">Create post</a>
+
+
+<table>
+    <tr>
+        <th>
+            <p>Title</p>
+        </th>
+        <th style="margin-right: 30px; padding-right: 30px;">
+            <p>Author</p>
+        </th>
+        <th>
+            <p>Created</p>
+        </th>
+    </tr>
+    <tr ng-repeat="post in vm.posts">
+        <td>
+            <a href="#/post/{{post._id}}">{{post.title}}</a>
+        </td>
+        <td>
+            <p>{{post.Author.login}}</p>
+        </td>
+        <td>
+            <p>{{post.publishedDate}}</p>
+        </td>
+    </tr>
+</table>

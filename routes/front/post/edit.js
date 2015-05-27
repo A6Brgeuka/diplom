@@ -1,3 +1,4 @@
+/*
 var Advert = require('models/advert').Advert;
 var HttpError = require('error').HttpError;
 var ObjectID = require('mongodb').ObjectID;
@@ -26,4 +27,4 @@ exports.post = function(req, res, next) {
         res.redirect('/');
     });
 
-};
+};*/

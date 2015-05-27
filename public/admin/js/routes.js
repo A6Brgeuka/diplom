@@ -12,23 +12,13 @@
                         controllerAs: 'vm'
                     }).
                     when('/posts', {
-                        templateUrl:  'admin/partials/posts.ejs',
+                        templateUrl:  'admin/partials/post/posts.ejs',
                         controller: 'PostController',
                         controllerAs: 'vm'
                     }).
-                    /*when('/signin', {
-                        templateUrl:  'admin/partials/auth/signin.ejs',
-                        controller: 'SignInController',
-                        controllerAs: 'vm'
-                    }).
-                    when('/signup', {
-                        templateUrl:  'admin/partials/auth/signup.ejs',
-                        controller: 'SignUpController',
-                        controllerAs: 'vm'
-                    }).
-                    when('/post', {
-                        templateUrl:  'admin/partials/post/post.ejs',
-                        controller: 'PostController',
+                    when('/post/:id', {
+                        templateUrl:  'admin/partials/post/detailsPost.ejs',
+                        controller: 'DetailsPostController',
                         controllerAs: 'vm'
                     }).
                     when('/createpost', {
@@ -36,21 +26,21 @@
                         controller: 'CreatePostController',
                         controllerAs: 'vm'
                     }).
-                    when('/gallery', {
-                        templateUrl:  'admin/partials/gallery.ejs',
-                        controller: 'GalleryController',
+                    when('/users', {
+                        templateUrl:  'admin/partials/user/users.ejs',
+                        controller: 'UserController',
                         controllerAs: 'vm'
-                    }).*/
-                    /*when('/contact', {
-                        templateUrl:  'admin/partials/contact.ejs',
-                        controller: 'ContactController',
+                    }).
+                    when('/user/:id', {
+                        templateUrl:  'admin/partials/user/detailsUser.ejs',
+                        controller: 'DetailsUserController',
                         controllerAs: 'vm'
-                    }).*/
-                    /*when('/users/:userId', {
-                     templateUrl:  '../partials/detailsUser.ejs',
-                     controller: 'DetailsUserCtrl',
-                     controllerAs: 'vm'
-                     }).*/
+                    }).
+                    when('/createuser', {
+                        templateUrl:  'admin/partials/user/createUser.ejs',
+                        controller: 'CreateUserController',
+                        controllerAs: 'vm'
+                    }).
                     otherwise({
                         redirectTo: '/'
                     });

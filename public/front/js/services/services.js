@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .factory('ShowUser', ShowUser)
         .factory('DetailUser', DetailUser)
         .factory('EditUser', EditUser)

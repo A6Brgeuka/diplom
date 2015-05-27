@@ -84,9 +84,11 @@ schema.statics.registration = function(login, password, callback) {
             User.findOne({login: login}, callback);
         },
         function(user, callback) {
+            console.log(reg);
+            console.log(user);
             if (!user) {
                 if(password){
-                    var newUser = new User({login: login, password: password, isAdmin: false, firstname: "", lastname:"", phone: null});
+                    var newUser = new User({login: login, password: password, isAdmin: false, firstname: "", lastname:"", phone: 0});
                     newUser.save(function(err) {
                         if (err) return callback(err);
                         callback(null, newUser);
@@ -101,24 +103,109 @@ schema.statics.registration = function(login, password, callback) {
     ], callback);
 };
 
-/*schema.statics.getUsers = function(callback) {
+schema.statics.getUsers = function(callback) {
     var User = this;
 
     User.find({}, function(err, users){
         if(err) return callback(err);
+
         callback(null, users);
     });
 };
 
-schema.statics.getCurrentUser = function(req, callback) {
+schema.statics.getUserById = function(id, callback) {
     var User = this;
 
-    User.find({_id : req.session.user}, function(err, user){
+    User.find({_id : id}, function(err, user){
         if(err) return callback(err);
 
         callback(null, user);
     });
-};*/
+};
+
+schema.statics.edit = function(req, callback) {
+
+    var User = this;
+
+    User.find({login: req.body.login}, function(err, user){
+        if(err) return callback(err);
+
+        user.forEach(function(item){
+
+            if(item._id == req.body.id){
+                User.update(
+                    {
+                        _id: req.body.id
+                    },
+                    {
+                        firstname: req.body.firstname,
+                        lastname: req.body.lastname,
+                        phone: req.body.phone,
+                        isAdmin: req.body.isAdmin
+                    },{
+                        multi: true
+                    } ,
+                    function(err){
+                        if(err) callback(err);
+                        callback(null);
+                    }
+                );
+            } else {
+                callback(new Error("login zanyat"));
+            }
+        });
+
+        User.update(
+            {
+                _id: req.body.id
+            },
+            {
+                login: req.body.login,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                phone: req.body.phone,
+                isAdmin: req.body.isAdmin
+            },{
+                multi: true
+            } ,
+            function(err){
+                if(err) callback(err);
+                callback(null);
+            }
+        );
+
+    });
+};
+
+schema.statics.create = function(req, callback) {
+
+    var User = this;
+
+    User.find({login: req.body.login}, function(err, user){
+        if(err) return callback(err);
+
+        user.forEach(function(item){
+            callback(new Error("login zanyat"));
+        });
+
+        var newuser = new User(
+            {
+                login: req.body.login,
+                password: req.body.password,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                isAdmin: req.body.isAdmin,
+                phone: req.body.phone
+            }
+        );
+
+        newuser.save(function(err){
+            if (err) return callback(err);
+            callback(null);
+        });
+    });
+};
+
 
 
 exports.User = mongoose.model('User', schema);

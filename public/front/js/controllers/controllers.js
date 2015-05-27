@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .controller('BaseController', BaseController)
         .controller('PostController', PostController)
         .controller('SecondController', SecondController)

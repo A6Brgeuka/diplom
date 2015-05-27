@@ -1,5 +1,5 @@
-//var Advert = require('models/advert').Advert;
+exports.get = function(req, res, next) {
 
-exports.get = function(req, res){
-    res.render("front/index");
+    res.render('front/index');
+
 };

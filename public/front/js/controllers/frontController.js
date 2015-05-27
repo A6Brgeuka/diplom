@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('angularApp')
+        .module('FrontApp')
         .controller('FrontController', FrontController);
 
     FrontController.$inject = ['SignOutUser'];
