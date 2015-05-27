@@ -5,8 +5,34 @@ var config = require('config'); //конфигурация приложения
 var log = require('libs/log')(module);
 var HttpError = require('error').HttpError;
 
+var multer  = require('multer');
 
 var app = express(); //создаем приложение
+
+var done=false;
+
+app.use(multer({
+  dest: './public/admin/images/',
+  limits: {
+    fieldNameSize: 100,
+    files: 2,
+    fields: 5
+  },
+  rename: function (fieldname, filename) {
+    return filename+Date.now();
+  },
+  onFileUploadStart: function (file) {
+    console.log(file.originalname + ' is starting ...')
+  },
+  onFileUploadComplete: function (file, req, res) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path);
+    done=true;
+    //return res.send(200);
+  },
+  onError: function(){
+    console.log("FATAL ERROR");
+  }
+}));
 
 app.engine('ejs', require('ejs-locals')); //файлы с расширение ejs будем обрабатывать ejs-locals
 app.set('views', __dirname + '/views');
@@ -58,6 +84,14 @@ http.createServer(app).listen(config.get('port'), function(){   //express будет 
 
 
 //middleware - обработчик запросов
+
+app.post('/adm/gallery/upload',function(req,res){
+  if(done==true){
+    console.log(req.files);
+    res.end("File uploaded.");
+  }
+});
+
 
 app.use(function(err, req, res, next){
   if (typeof err == 'number') { // next(404);

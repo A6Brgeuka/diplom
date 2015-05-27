@@ -35,7 +35,7 @@ module.exports = function(app){
   app.post('/adm/user/create', chechAuth, checkAccess, require('./admin/user/create').post);
 
   //gallery
-  app.post('/adm/gallery/upload', chechAuth, checkAccess, require('./admin/gallery/upload').post);
+  //app.post('/adm/gallery/upload', chechAuth, checkAccess, require('./admin/gallery/upload').post);
 
 
 
