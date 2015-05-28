@@ -12,8 +12,6 @@ var schema = new Schema({
         type: String,
         required: true
     },*/
-
-
     content:{
        brief:{
            type: String
@@ -22,13 +20,6 @@ var schema = new Schema({
            type: String
        }
     },
-    /*brief:{
-        type: String
-    },
-    extended:{
-        type: String
-    }*/
-
     publishedDate: {
         type: Date,
         default: Date.now
@@ -92,8 +83,7 @@ schema.statics.getPostByIdFront = function(id, callback) {
         .populate('Author')
         .exec(function(err, post){
             if(err) throw err;
-            console.log(post);
-            //console.log(posts);
+
             callback(null, post);
         });
 };
@@ -105,7 +95,7 @@ schema.statics.getPostById = function(id, callback) {
     Post.findById(id , function(err, post){
         if(err) callback(err);
 
-        //console.log(post);
+
         callback(null, post);
     });
 };
@@ -125,8 +115,10 @@ schema.statics.edit = function(req, callback) {
                         _id: req.body.id
                     },
                     {
-                        brief: req.body.brief,
-                        extended: req.body.extended,
+                        content:{
+                            brief: req.body.brief,
+                            extended: req.body.extended
+                        },
                         Author: req.body.Author
                     },{
                         multi: true
@@ -161,61 +153,7 @@ schema.statics.edit = function(req, callback) {
 
     });
 };
-/*schema.statics.edit = function(req, callback) {
-
-    var Advert = this;
-
-    User.findById(req.session.user, function(err, user){
-        if(err) return next(err);
-
-        var newAdvert = new Advert(
-            {
-                title: req.body.title,
-                name: req.body.name,
-                shortDescription: req.body.shortDescription,
-                longDescription: req.body.longDescription,
-                userId: user.username
-            }
-        );
-        newAdvert.save(function(err){
-            if (err) return callback(err);
-            callback(null);
-        });
-    });
-};
-
-
-schema.statics.getAdvertById = function(id, callback) {
-
-    var Advert = this;
-
-    Advert.findById(id , function(err, advert){
-        if(err) callback(err);
-
-        callback(null, advert);
-    });
-};
-
-schema.statics.advertUpdate = function(req, callback) {
-    var Advert = this;
-
-    Advert.update(
-        {
-            _id: req.body._id
-        },
-        {
-            title: req.body.title,
-            name: req.body.name,
-            shortDescription: req.body.shortDescription,
-            longDescription: req.body.longDescription
-        },{
-            multi: true
-        } , function(err){
-                if(err) callback(err);
-                callback(null);
-        }
-    );
-};
+/*
 
 schema.statics.advertDelete = function(id, callback) {
     var Advert = this;

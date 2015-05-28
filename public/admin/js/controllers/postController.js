@@ -44,6 +44,7 @@
                     alert(answer[1]);
                 } else {
                     alert("Post created");
+                    //document.location.href = 'adm/post';
                     //$location.href('/');
 
                 }
@@ -64,12 +65,12 @@
 
         DetailsPost.query({id: $routeParams.id}, function(answer){
             //console.log(answer);
-
+            console.log(answer[0]);
             vm.postId = answer[0]._id;
             vm.title = answer[0].title;
             //console.log(answer[0].title);
-            vm.brief = answer[0].brief;
-            vm.extended = answer[0].extended;
+            vm.brief = answer[0].content.brief;
+            vm.extended = answer[0].content.extended;
             vm.Author = answer[0].Author;
 
         });

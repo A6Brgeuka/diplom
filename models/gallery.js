@@ -7,11 +7,15 @@ var schema = new Schema({
        unique: true,
        required: true
    },
-   created: {
-       type: Date,
-       default: Date.now
-   },
+    publishedDate: {
+        type: Date,
+        default: Date.now
+    },
    images:[{
-       type: String
+       name:{
+           type: String
+       }
    }]
 });
+
+exports.Gallery = mongoose.model('Gallery', schema);

@@ -42,7 +42,7 @@
 
         DetailsUser.query({id: $routeParams.id}, function(answer){
 
-            console.log(answer);
+            //console.log(answer);
 
             vm.userId = answer[0]._id;
             vm.login = answer[0].login;

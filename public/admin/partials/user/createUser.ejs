@@ -1,9 +1,14 @@
 <div class="lead">Create user</div>
 
 <form name="createUser">
-    <div class="form-group">
+    <!--<div class="form-group">
         <label for="login">Login</label>
         <input type="text" class="form-control" ng-model="vm.login" id="login" required>
+    </div>-->
+
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="sizing-addon1">@</span>
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" ng-model="vm.login">
     </div>
 
     <div class="form-group">

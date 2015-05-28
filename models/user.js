@@ -93,8 +93,6 @@ schema.statics.registration = function(login, password, callback) {
             User.findOne({login: login}, callback);
         },
         function(user, callback) {
-           // console.log(reg);
-            //console.log(user);
             if (!user) {
                 if(password){
                     var newUser = new User(
@@ -130,7 +128,7 @@ schema.statics.getUsers = function(callback) {
     User.find({}, function(err, users){
         if(err) return callback(err);
 
-        //console.log(users);
+
         callback(null, users);
     });
 };
