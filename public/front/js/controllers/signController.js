@@ -52,7 +52,7 @@
                     /*alert("Wellcome");*/
                     /*location.reload();*/
 
-                    $location.href('/');
+                    document.location.href = '/';
 
                 }
             });

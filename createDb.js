@@ -34,9 +34,9 @@ function requiredModels(callback){
 function createUser(callback){
 
         var users = [
-            {login: "admin",password: "admin", isAdmin: true},
-            {login: "user1",password: "user1", isAdmin: false},
-            {login: "user2",password: "user2", isAdmin: false}
+            {login: "admin", password: "admin", name: {firstname: "admin", lastname:"admin"}, isAdmin: true},
+            {login: "user1", password: "user1", name: {firstname: "user1", lastname:"user1"}, isAdmin: false},
+            {login: "user2", password: "user2", name: {firstname: "user2", lastname:"user2"}, isAdmin: false}
         ];
         async.each(users, function(userData, callback){
             var user = new mongoose.models.User(userData);

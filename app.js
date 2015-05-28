@@ -9,7 +9,7 @@ var multer  = require('multer');
 
 var app = express(); //создаем приложение
 
-var done=false;
+var done = false;
 
 app.use(multer({
   dest: './public/admin/images/',
@@ -24,10 +24,10 @@ app.use(multer({
   onFileUploadStart: function (file) {
     console.log(file.originalname + ' is starting ...')
   },
-  onFileUploadComplete: function (file, req, res) {
+  onFileUploadComplete: function (file) {
     console.log(file.fieldname + ' uploaded to  ' + file.path);
-    done=true;
-    //return res.send(200);
+    return done = true;
+    //res.json();
   },
   onError: function(){
     console.log("FATAL ERROR");
@@ -86,10 +86,10 @@ http.createServer(app).listen(config.get('port'), function(){   //express будет 
 //middleware - обработчик запросов
 
 app.post('/adm/gallery/upload',function(req,res){
-  if(done==true){
+  //if(done==true){
     console.log(req.files);
-    res.end("File uploaded.");
-  }
+    res.json({});
+  //}
 });
 
 

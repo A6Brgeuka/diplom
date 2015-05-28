@@ -18,7 +18,7 @@
 
             // CALLBACKS
 
-            uploader.onWhenAddingFileFailed = function(item, filter, options) {
+            /*uploader.onWhenAddingFileFailed = function(item, filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
             uploader.onAfterAddingFile = function(fileItem) {
@@ -52,6 +52,6 @@
                 console.info('onCompleteAll');
             };
 
-            console.info('uploader', uploader);
+            console.info('uploader', uploader);*/
         }]);
 })();

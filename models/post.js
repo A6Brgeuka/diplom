@@ -21,14 +21,14 @@ var schema = new Schema({
        extended:{
            type: String
        }
-     },
-    brief:{
+    },
+    /*brief:{
         type: String
     },
     extended:{
         type: String
-    }
-    ,
+    }*/
+
     publishedDate: {
         type: Date,
         default: Date.now
@@ -57,8 +57,8 @@ schema.statics.create = function(req, callback) {
                     brief:req.body.brief,
                     extended:req.body.extended
                 },
-                brief : req.body.brief,
-                extended: req.body.extended,
+ /*               brief : req.body.brief,
+                extended: req.body.extended*/
                 Author: req.session.user
             }
         );

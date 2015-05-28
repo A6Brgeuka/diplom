@@ -12,12 +12,21 @@ var schema = new Schema({
         unique: true,
         required: true
     },
-    firstname :{
+    name:{
+        firstname:{
+            type: String
+        },
+        lastname:{
+            type: String
+        }
+    }
+    ,
+    /*firstname :{
         type: String
     },
     lastname:{
         type: String
-    },
+    },*/
     phone:{
         type: Number
     },
@@ -84,11 +93,23 @@ schema.statics.registration = function(login, password, callback) {
             User.findOne({login: login}, callback);
         },
         function(user, callback) {
-            console.log(reg);
-            console.log(user);
+           // console.log(reg);
+            //console.log(user);
             if (!user) {
                 if(password){
-                    var newUser = new User({login: login, password: password, isAdmin: false, firstname: "", lastname:"", phone: 0});
+                    var newUser = new User(
+                        {
+                            login: login,
+                            password: password,
+                            name:{
+                              firstname:"",
+                              lastname:""
+                            },
+                            /*firstname: "",
+                            lastname:"",*/
+                            isAdmin: false,
+                            phone: 0}
+                    );
                     newUser.save(function(err) {
                         if (err) return callback(err);
                         callback(null, newUser);
@@ -109,6 +130,7 @@ schema.statics.getUsers = function(callback) {
     User.find({}, function(err, users){
         if(err) return callback(err);
 
+        //console.log(users);
         callback(null, users);
     });
 };
@@ -138,8 +160,12 @@ schema.statics.edit = function(req, callback) {
                         _id: req.body.id
                     },
                     {
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname,
+                        name:{
+                            firstname: req.body.firstname,
+                            lastname: req.body.lastname
+                        },
+                        /*firstname: req.body.firstname,
+                        lastname: ,*/
                         phone: req.body.phone,
                         isAdmin: req.body.isAdmin
                     },{
@@ -161,8 +187,10 @@ schema.statics.edit = function(req, callback) {
             },
             {
                 login: req.body.login,
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
+                name:{
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname
+                },
                 phone: req.body.phone,
                 isAdmin: req.body.isAdmin
             },{
@@ -192,8 +220,10 @@ schema.statics.create = function(req, callback) {
             {
                 login: req.body.login,
                 password: req.body.password,
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
+                name:{
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname
+                },
                 isAdmin: req.body.isAdmin,
                 phone: req.body.phone
             }

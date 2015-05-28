@@ -46,8 +46,8 @@
 
             vm.userId = answer[0]._id;
             vm.login = answer[0].login;
-            vm.fName = answer[0].firstname;
-            vm.lName = answer[0].lastname;
+            vm.fName = answer[0].name.firstname;
+            vm.lName = answer[0].name.lastname;
             vm.phone = answer[0].phone;
             vm.isAdmin = answer[0].isAdmin
 
