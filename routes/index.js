@@ -30,21 +30,7 @@ module.exports = function(app){
   app.post('/adm/user/create', chechAuth, checkAccess, require('./admin/user/create').post);
 
   //gallery
-  app.post('/adm/gallery/upload', chechAuth, checkAccess,multer({
-    dest: './upload',
-    rename: function (fieldname, filename) {
-      return filename+Date.now();
-    },
-    onFileUploadStart: function (file, req, res) {
-      console.log(file.originalname + ' is starting ...');
-    },
-    onFileUploadComplete: function (file) {
-      console.log("ALL DONE");
-    },
-    onError: function(){
-      console.log("FATAL ERROR");
-    }
-  }), require('./admin/gallery/upload').post);
+  app.post('/adm/gallery/upload', chechAuth, checkAccess, require('./admin/gallery/upload').post);
 
 
 

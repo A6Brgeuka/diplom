@@ -10,12 +10,8 @@ module.exports = function(req, res, next) {
         if(err) return next(err);
 
         if(user.isAdmin == false){
-            return res.json([false, 'Auth Error']);
-            //res.json([false, 'Access denied']);
-            //return next(new HttpError(500, "FATAL ERROR"));
+            return res.redirect('#/');
         }
         next();
-        //res.json([false, 'Access']);
-
     });
 };

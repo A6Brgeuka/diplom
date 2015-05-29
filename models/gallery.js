@@ -12,10 +12,10 @@ var schema = new Schema({
         default: Date.now
     },
    images:[{
-       name:{
-           type: String
-       }
+       type: String
    }]
 });
+
+
 
 exports.Gallery = mongoose.model('Gallery', schema);

@@ -39,8 +39,8 @@
 
             vm.title = answer[0].title;
             //console.log(answer[0].title);
-            vm.brief = answer[0].brief;
-            vm.extended = answer[0].extended;
+            vm.brief = answer[0].content.brief;
+            vm.extended = answer[0].content.extended;
             vm.Author = answer[0].Author;
 
         });
