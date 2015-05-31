@@ -51,6 +51,11 @@
                         controller: 'CreateGalleryController',
                         controllerAs: 'vm'
                     }).
+                    when('/gallery/:id', {
+                        templateUrl:  'admin/partials/gallery/detailsGallery.ejs',
+                        controller: 'DetailsGalleryController',
+                        controllerAs: 'vm'
+                    }).
                     otherwise({
                         redirectTo: '/'
                     });

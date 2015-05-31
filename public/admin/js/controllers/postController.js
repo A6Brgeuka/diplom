@@ -13,8 +13,6 @@
         var vm = this;
 
         vm.posts = [];
-        //vm.showPosts = showPosts;
-        vm.lengthPost = 0;
 
         showPosts();
 
@@ -24,7 +22,6 @@
                     alert(answer[1]);
                 } else {
                     vm.posts = answer[1];
-
                 }
             });
         }
@@ -44,15 +41,13 @@
                     alert(answer[1]);
                 } else {
                     alert("Post created");
-                    //document.location.href = 'adm/post';
-                    //$location.href('/');
-
                 }
             });
         }
     }
 
     function DetailsPostController($routeParams, DetailsPost, EditPost){
+
         var vm = this;
 
         vm.post = [];
@@ -62,13 +57,15 @@
         vm.brief = '';
         vm.extended = '';
         vm.Author = '';
+        vm.flag = false;
 
         DetailsPost.query({id: $routeParams.id}, function(answer){
-            //console.log(answer);
-            console.log(answer[0]);
+
+            if(!(answer)){
+                vm.flag = true
+            }
             vm.postId = answer[0]._id;
             vm.title = answer[0].title;
-            //console.log(answer[0].title);
             vm.brief = answer[0].content.brief;
             vm.extended = answer[0].content.extended;
             vm.Author = answer[0].Author;

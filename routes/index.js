@@ -1,6 +1,5 @@
 var checkAccess = require('middleware/checkAccess');
 var chechAuth = require('middleware/checkAuth');
-var multer  = require('multer');
 var path = require('path');
 
 module.exports = function(app){
@@ -12,6 +11,8 @@ module.exports = function(app){
 
   app.get('/showpost', require('./front/post/show').get);
   app.get('/details',  require('./front/post/details').get);
+
+  app.get('/front/gallery/getgalleries', require('./front/gallery/getgalleries').get);
 
   //admin route
 
@@ -30,7 +31,12 @@ module.exports = function(app){
   app.post('/adm/user/create', chechAuth, checkAccess, require('./admin/user/create').post);
 
   //gallery
+  app.get('/adm/gallery/getgalleries', chechAuth, checkAccess, require('./admin/gallery/getgalleries').get);
   app.post('/adm/gallery/upload', chechAuth, checkAccess, require('./admin/gallery/upload').post);
+
+
+
+
 
 
 

@@ -1,3 +1,30 @@
-GALLERY PAGE
+<div>
+    <p><a href="#/galleries">Galleries</a></p>
+</div>
 
-<a class="btn btn-default btn-create btn-create-item" href="#/creategallery">Create gallery</a>
+<a class="btn btn-default btn-create btn-create-item" href="#/creategallery">Create gallery</a><br>
+
+<table>
+    <tr>
+        <th>
+            <p>Name</p>
+        </th>
+        <th style="margin-right: 30px; padding-right: 30px;">
+            <p>Author</p>
+        </th>
+        <th>
+            <p>Created</p>
+        </th>
+    </tr>
+    <tr ng-repeat="gallery in vm.galleries">
+        <td>
+            <a href="#/gallery/{{gallery._id}}">{{gallery.name}}</a>
+        </td>
+        <td>
+            <p>{{gallery.Author.login}}</p>
+        </td>
+        <td>
+            <p>{{gallery.publishedDate}}</p>
+        </td>
+    </tr>
+</table>

@@ -5,8 +5,6 @@ var config = require('config'); //конфигурация приложения
 var log = require('libs/log')(module);
 var HttpError = require('error').HttpError;
 
-var multer  = require('multer');
-
 var app = express(); //создаем приложение
 
 app.engine('ejs', require('ejs-locals')); //файлы с расширение ejs будем обрабатывать ejs-locals
@@ -49,34 +47,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 http.createServer(app).listen(config.get('port'), function(){   //express будет обрабатывать все входящие запросы
   log.info('Express server listening on port ' + config.get('port'));
 });
-
-//middleware - обработчик запросов
-
-/*var done = false;
-
-app.post('/adm/gallery/upload', [
-  multer({
-    dest: path.join(__dirname, '/public/admin/images'),
-    rename: function (fieldname, filename) {
-      return filename+Date.now();
-    },
-    onFileUploadStart: function (file, req, res) {
-      console.log(file.originalname + ' is starting ...');
-
-    },
-    onFileUploadComplete: function (file) {
-      console.log("ALL DONE");
-    },
-    onError: function(){
-      console.log("FATAL ERROR");
-    }
-  }),
-  function(req, res){
-    //console.log(req.body); // form fields
-    //console.log(req.files); // form files
-    console.log("return res");
-    res.status(200).end();
-}]);*/
 
 app.use(function(req, res){
   res.redirect('#/')

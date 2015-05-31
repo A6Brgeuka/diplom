@@ -1,1 +1,37 @@
-<div class="lead">POST GALLERY</div>
+<div class="lead">Gallery page</div>
+
+<div ng-repeat="gallery in vm.galleries">
+    <p class="lead">{{gallery.name}}</p>
+    <div ng-repeat="image in gallery.images" class="col-md-3">
+
+            <img ng-src="{{image.url}}" width="200px" height="200px">
+
+    </div>
+</div>
+
+
+<!--
+<table>
+    <tr>
+        <th>
+            <p>Name</p>
+        </th>
+        <th style="margin-right: 30px; padding-right: 30px;">
+            <p>Author</p>
+        </th>
+        <th>
+            <p>Created</p>
+        </th>
+    </tr>
+    <tr ng-repeat="gallery in vm.galleries">
+        <td>
+            <a href="#/post/{{gallery._id}}">{{gallery.name}}</a>
+        </td>
+        <td>
+            <p>......&lt;!&ndash;{{galleery.Author.login}}&ndash;&gt;</p>
+        </td>
+        <td>
+            <p>{{gallery.publishedDate}}</p>
+        </td>
+    </tr>
+</table>-->

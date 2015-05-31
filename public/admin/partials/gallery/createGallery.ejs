@@ -1,21 +1,10 @@
-<!--
-<form name="formname">
-    <input type="file" nv-file-select uploader="uploader"/><br/>
-    <ul>
-        <li ng-repeat="item in uploader.queue">
-            Name: <span ng-bind="item.file.name"></span><br/>
-            <button ng-click="item.upload()">upload</button>
-        </li>
-    </ul>
-</form>
--->
 <div class="row" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 
-    <div class="input-group input-group-lg">
-        <input type="text" class="form-control" placeholder="name gallery" aria-describedby="sizing-addon1" ng-model="vm.name">
-    </div>
-
     <div class="col-md-3">
+
+        <div class="input-group">
+            <input type="text" ng-model="vm.nameGallery" ng-change="vm.change()" class="form-control" placeholder="name gallery" aria-describedby="sizing-addon1" >
+        </div>
 
         <h3>Select files</h3>
 
@@ -107,4 +96,3 @@
 
 </div>
 
-</div>
