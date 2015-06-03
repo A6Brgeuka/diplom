@@ -21,12 +21,6 @@ var schema = new Schema({
         }
     }
     ,
-    /*firstname :{
-        type: String
-    },
-    lastname:{
-        type: String
-    },*/
     phone:{
         type: Number
     },

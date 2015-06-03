@@ -1,6 +1,7 @@
 {
   "name": "NodeCMS",
   "version": "0.0.1",
+  "author": "Arshan",
   "private": true,
   "scripts": {
     "start": "node app.js"
