@@ -5,6 +5,9 @@
 
 <a class="btn btn-default btn-create btn-create-item" href="#/createuser">Create user</a>
 
+<div class="form-group" style="width: 200px; margin-top: 30px">
+    <input type="text" class="form-control" ng-model="query" placeholder="title">
+</div>
 
 <table class="table">
     <tr>
@@ -18,7 +21,7 @@
             <p>isAdmin</p>
         </th>
     </tr>
-    <tr ng-repeat="user in vm.users">
+    <tr ng-repeat="user in vm.users | filter:query">
         <td>
             <a href="#/user/{{user._id}}">{{user.login}}</a>
         </td>

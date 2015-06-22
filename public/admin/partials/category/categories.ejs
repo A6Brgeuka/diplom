@@ -1,0 +1,24 @@
+<div>
+    <p><a href="#/categories">Categories</a></p>
+</div>
+
+<div>
+    <a class="btn btn-default btn-create btn-create-item" href="#/createcategory">Create post</a>
+</div>
+
+<div class="form-group" style="width: 200px; margin-top: 30px">
+    <input type="text" class="form-control" ng-model="query" placeholder="title">
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            <p>Title</p>
+        </th>
+    </tr>
+    <tr ng-repeat="post in vm.categories">
+        <td>
+            <a href="#/category/{{post._id}}">{{post.title}}</a>
+        </td>
+    </tr>
+</table>

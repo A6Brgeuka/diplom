@@ -4,10 +4,20 @@
 
 <!--<button class="btn btn-primary" ng-click="vm.showPosts()">Get Posts</button><br>-->
 
-<div ng-repeat="post in vm.posts" class="col-md-4" style="margin-bottom:30px; background-color:#ffffff; border: 1px solid black; heieght:800px;">
-    <div>Title: <a href="#post/{{post._id}}">{{post.title}}</a></div>
-    <div>Content brief: {{post.content.brief}}</div>
-   <!-- <div>Content extended: {{post.extended}}</div>-->
-    <div>Author: {{post.Author.login}}</div>
-    <a href="#post/{{post._id}}">read more</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            Search: <input ng-model="query">
+            <p>{{query}}</p>
+        </div>
+        <ul class="col-md-10">
+            <li ng-repeat="post in vm.posts | filter: query" class="thumbnail" style="margin-bottom: 30px">
+                <div class="lead">Title: <a href="#post/{{post._id}}">{{post.title}}</a></div>
+                <div class="content">Brief content: {{post.content.brief}}</div>
+                <div>Author: {{post.Author.login}}</div>
+                <a href="#post/{{post._id}}" class="btn btn-primary" role="button">read more</a>
+            </li>
+        </ul>
+    </div>
 </div>
+

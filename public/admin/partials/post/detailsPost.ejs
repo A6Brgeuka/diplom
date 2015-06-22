@@ -1,6 +1,6 @@
 <div class="lead">Details and edit post</div>
 
-<form name="detailsPost">
+<form name="detailsPost" class="col-md-6">
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control" ng-model="vm.title" id="title" placeholder="title" required>
@@ -18,4 +18,5 @@
 
 
     <button ng-click="vm.savePost()" class="btn btn-default" ng-disabled="detailsPost.$invalid">Update</button>
+    <button ng-click="vm.removePost()" class="btn btn-default">Remove</button>
 </form>

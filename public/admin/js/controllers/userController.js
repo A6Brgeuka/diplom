@@ -6,7 +6,7 @@
         .controller('CreateUserController', CreateUserController);
 
     UserController.$inject = ['GetUsers'];
-    DetailsUserController.$inject = ['$routeParams', 'DetailsUser', 'EditUser'];
+    DetailsUserController.$inject = ['$routeParams', 'DetailsUser', 'EditUser', 'DeleteUser'];
     CreateUserController.$inject = ['CreateUser'];
 
     function UserController(GetUsers){
@@ -28,11 +28,12 @@
 
     }
 
-    function DetailsUserController($routeParams, DetailsUser, EditUser){
+    function DetailsUserController($routeParams, DetailsUser, EditUser, DeleteUser){
         var vm = this;
 
         vm.user = [];
         vm.saveUser = saveUser;
+        vm.removeUser = removeUser;
 
         vm.login = '';
         vm.fName = '';
@@ -61,6 +62,18 @@
                 } else {
                     //console.log(answer);
                     alert(answer[1]);
+                }
+                //console.log(answer);
+            });
+        }
+
+        function removeUser(){
+            DeleteUser.query({ id: vm.userId }, function(answer){
+                if(!answer[0]){
+                    alert(answer[1]);
+                } else {
+                    alert("User remove");
+                    document.location.href = '#/users';
                 }
                 //console.log(answer);
             });

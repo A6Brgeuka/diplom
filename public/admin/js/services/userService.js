@@ -4,13 +4,15 @@
         .factory('GetUsers', GetUsers)
         .factory('DetailsUser', DetailsUser)
         .factory('EditUser', EditUser)
-        .factory('CreateUser', CreateUser);
+        .factory('CreateUser', CreateUser)
+        .factory('DeleteUser', DeleteUser);
 
 
     GetUsers.$inject = ['$resource'];
     DetailsUser.$inject = ['$resource'];
     EditUser.$inject = ['$resource'];
     CreateUser.$inject = ['$resource'];
+    DeleteUser.$inject = ['$resource'];
 
     function GetUsers($resource){
         return $resource('/adm/user/getusers', {}, {
@@ -38,6 +40,14 @@
             query: {method:'POST', params:{login: $login, password: $password, firstname: $firstname, lastname: $lastname, phone: $phone, isAdmin: $isAdmin}, isArray:true}
         });
     }
+
+    function DeleteUser($resource, $id){
+        return $resource('/adm/user/remove', {}, {
+            //console.log("asasdasd");
+            query: {method:'POST', params:{id: $id}, isArray:true}
+        });
+    }
+
 
     /*function CreatePost($resource, $title, $brief, $extended){
         return $resource('/adm/post/create', {}, {

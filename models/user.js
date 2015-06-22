@@ -97,8 +97,6 @@ schema.statics.registration = function(login, password, callback) {
                               firstname:"",
                               lastname:""
                             },
-                            /*firstname: "",
-                            lastname:"",*/
                             isAdmin: false,
                             phone: 0}
                     );
@@ -121,8 +119,6 @@ schema.statics.getUsers = function(callback) {
 
     User.find({}, function(err, users){
         if(err) return callback(err);
-
-
         callback(null, users);
     });
 };
@@ -228,7 +224,107 @@ schema.statics.create = function(req, callback) {
     });
 };
 
+schema.statics.editProfile = function(req, callback) {
 
+    var User = this;
+
+    User.find({login: req.body.login}, function(err, user){
+        if(err) return callback(err);
+
+        user.forEach(function(item){
+
+            if(item._id == req.body.id){
+                User.update(
+                    {
+                        _id: req.body.id
+                    },
+                    {
+                        name:{
+                            firstname: req.body.firstname,
+                            lastname: req.body.lastname
+                        },
+                        phone: req.body.phone
+                        //isAdmin: req.body.isAdmin
+                    },{
+                        multi: true
+                    } ,
+                    function(err){
+                        if(err) callback(err);
+                        callback(null);
+                    }
+                );
+            } else {
+                callback(new Error("login zanyat"));
+            }
+        });
+
+        User.update(
+            {
+                _id: req.body.id
+            },
+            {
+                login: req.body.login,
+                name:{
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname
+                },
+                phone: req.body.phone
+                //isAdmin: req.body.isAdmin
+            },{
+                multi: true
+            } ,
+            function(err){
+                if(err) callback(err);
+                callback(null);
+            }
+        );
+
+    });
+};
+
+schema.statics.changePassword = function(req, callback) {
+    var User = this;
+
+    User.findById(req.session.user, function (err, user) {
+        if(err) callback(err);
+
+        var hashedPassword = user.encryptPassword(req.body.new);
+        if(user.checkPassword(req.body.old)){
+            console.log("true");
+            console.log(user);
+            User.update(
+                {
+                    _id: user._id
+                },
+                {
+                    hashedPassword: hashedPassword
+                    //isAdmin: req.body.isAdmin
+                },
+                function(err){
+                    if(err) callback(err);
+                    console.log("true2");
+                    callback(null);
+                }
+            );
+        } else {
+            callback(new Error("Password ne tot"))
+        }
+    });
+};
+
+schema.statics.removeUser = function(id, callback) {
+    var User = this;
+
+    User.remove(
+        {
+            _id: id
+        }
+        , function(err){
+            if(err) callback(err);
+            callback(null);
+        }
+    );
+};
 
 exports.User = mongoose.model('User', schema);
 

@@ -1,0 +1,25 @@
+<div class="lead">edit profile</div>
+
+<form name="detailsUser" class="col-md-5">
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" class="form-control" ng-model="vm.user[0].login" id="login" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fName">Firstname</label>
+        <input type="text" class="form-control" ng-model="vm.user[0].name.firstname" id="fName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="lName">Lastname</label>
+        <input type="text" class="form-control" ng-model="vm.user[0].name.lastname" id="lName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" ng-model="vm.user[0].phone" id="phone">
+    </div>
+
+    <button ng-click="vm.saveUser()" class="btn btn-default" ng-disabled="detailsUser.$invalid">Update</button>
+</form>

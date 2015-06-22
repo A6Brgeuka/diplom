@@ -56,6 +56,21 @@
                         controller: 'DetailsGalleryController',
                         controllerAs: 'vm'
                     }).
+                    when('/categories', {
+                        templateUrl:  'admin/partials/category/categories.ejs',
+                        controller: 'CategoryController',
+                        controllerAs: 'vm'
+                    }).
+                    when('/category/:id', {
+                        templateUrl:  'admin/partials/Category/detailsCategory.ejs',
+                        controller: 'DetailsCategoryController',
+                        controllerAs: 'vm'
+                    }).
+                    when('/createcategory', {
+                        templateUrl:  'admin/partials/Category/createCategory.ejs',
+                        controller: 'CreateCategoryController',
+                        controllerAs: 'vm'
+                    }).
                     otherwise({
                         redirectTo: '/'
                     });

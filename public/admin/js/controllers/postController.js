@@ -7,7 +7,7 @@
 
     PostController.$inject = ['GetPosts'];
     CreatePostController.$inject = ['CreatePost'];
-    DetailsPostController.$inject = ['$routeParams', 'DetailsPost', 'EditPost'];
+    DetailsPostController.$inject = ['$routeParams', 'DetailsPost', 'EditPost', 'DeletePost'];
 
     function PostController(GetPosts){
         var vm = this;
@@ -40,18 +40,19 @@
                 if(!answer[0]){
                     alert(answer[1]);
                 } else {
-                    alert("Post created");
+                    document.location.href = '/adm#/posts';
                 }
             });
         }
     }
 
-    function DetailsPostController($routeParams, DetailsPost, EditPost){
+    function DetailsPostController($routeParams, DetailsPost, EditPost, DeletePost){
 
         var vm = this;
 
         vm.post = [];
         vm.savePost = savePost;
+        vm.removePost = removePost;
 
         vm.title = '';
         vm.brief = '';
@@ -80,6 +81,19 @@
                 } else {
                     //console.log(answer);
                     alert(answer[1]);
+                }
+                //console.log(answer);
+            });
+        }
+
+        function removePost(){
+            DeletePost.query({ id: vm.postId }, function(answer){
+                if(!answer[0]){
+                    alert(answer[1]);
+                } else {
+                    //console.log(answer);
+                    alert("Post remove");
+                    document.location.href = '#/posts';
                 }
                 //console.log(answer);
             });

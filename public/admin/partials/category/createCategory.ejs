@@ -1,0 +1,10 @@
+<div class="lead">Create category</div>
+
+<form name="createCategory" class="col-md-6">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" ng-model="vm.name" id="name" placeholder="name" required>
+    </div>
+
+    <button ng-click="vm.create()" class="btn btn-default" ng-disabled="createCategory.$invalid">Create</button>
+</form>

@@ -41,6 +41,21 @@
                         controller: 'ContactController',
                         controllerAs: 'vm'
                     }).
+                    when('/profile', {
+                        templateUrl:  'front/partials/profile/profile.ejs',
+                        controller: 'ProfileController',
+                        controllerAs: 'vm'
+                    }).
+                    when('/editProfile', {
+                        templateUrl:  'front/partials/profile/editProfile.ejs',
+                        controller: 'EditProfileController',
+                        controllerAs: 'vm'
+                    }).
+                    when('/changePass', {
+                        templateUrl:  'front/partials/profile/changePass.ejs',
+                        controller: 'ChangePasswordController',
+                        controllerAs: 'vm'
+                    }).
                     otherwise({
                         redirectTo: '/'
                     });

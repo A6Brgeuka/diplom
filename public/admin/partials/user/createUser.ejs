@@ -1,14 +1,14 @@
 <div class="lead">Create user</div>
 
-<form name="createUser">
+<form name="createUser" class="col-md-6">
     <!--<div class="form-group">
         <label for="login">Login</label>
         <input type="text" class="form-control" ng-model="vm.login" id="login" required>
     </div>-->
 
-    <div class="input-group input-group-lg">
-        <span class="input-group-addon" id="sizing-addon1">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" ng-model="vm.login">
+    <div class="form-group">
+        <label for="fName">Login</label>
+        <input type="text" class="form-control" placeholder=""  ng-model="vm.login" required>
     </div>
 
     <div class="form-group">
@@ -31,9 +31,10 @@
         <input type="password" class="form-control" ng-model="vm.confpassword" id="confpassword" required>
     </div>
 
-    <div class="form-group">
-        <label for="isAdmin">is Admin</label>
-        <input type="checkbox" class="form-control" ng-model="vm.isAdmin" id="isAdmin">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="vm.isAdmin" id="isAdmin">is Admin
+        </label>
     </div>
 
     <div class="form-group">

@@ -27,6 +27,10 @@ var schema = new Schema({
     Author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    Categor:{
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
     }
 });
 
@@ -48,8 +52,6 @@ schema.statics.create = function(req, callback) {
                     brief:req.body.brief,
                     extended:req.body.extended
                 },
- /*               brief : req.body.brief,
-                extended: req.body.extended*/
                 Author: req.session.user
             }
         );
@@ -153,12 +155,12 @@ schema.statics.edit = function(req, callback) {
 
     });
 };
-/*
 
-schema.statics.advertDelete = function(id, callback) {
-    var Advert = this;
 
-    Advert.remove(
+schema.statics.removePost = function(id, callback) {
+    var Post = this;
+
+    Post.remove(
         {
             _id: id
         }
@@ -167,7 +169,7 @@ schema.statics.advertDelete = function(id, callback) {
             callback(null);
         }
     );
-};*/
+};
 
 
 exports.Post = mongoose.model('Post', schema);

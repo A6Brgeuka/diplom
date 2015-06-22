@@ -11,6 +11,7 @@
     function PostController(GetPosts){
         var vm = this;
 
+
         vm.posts = [];
         //vm.showPosts = showPosts;
 
@@ -22,6 +23,7 @@
                     alert(answer[1]);
                 } else {
                     vm.posts = answer[1];
+                    console.log(answer);
                 }
             });
         }

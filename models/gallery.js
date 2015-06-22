@@ -88,33 +88,6 @@ schema.statics.createInsert = function(req, name, callback) {
             }
         }
     ], callback);
-    /*Gallery.find({name: req.body.nameGallery}, function(err, gallery){
-        if(err) return callback(err);
-
-
-
-
-        /*gallery.forEach(function(item){
-            callback(null, gallery.name);
-        });
-        console.log("1");
-
-        var newGallery = new Gallery(
-            {
-                name: req.body.nameGallery,
-                images:[{
-                    url: '/admin/images/' + name
-                }]
-            }
-        );
-        console.log("1 2");
-        newGallery.save(function(err){
-            if (err) return callback(err);
-            console.log("1 2 3");
-            callback(null, null);
-        });
-        console.log("1 2 3 4");*/
-
 };
 
 
